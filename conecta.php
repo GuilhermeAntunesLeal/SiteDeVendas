@@ -1,13 +1,8 @@
 <?php
-  $servidor = "localhost:3307";
-  $usuario  = "root";
-  $senha    = "";
-  $banco    = "inf261";
+$conexao = mysqli_connect('localhost', 'root', '', 'inf261', 3306);
 
-  $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);
+if (!$conexao) {
+    die('Erro ao conectar com o banco de dados.');
+}
 
-  if(!$conexao){
-    die("Falha na conexão: " . mysqli_connect_error());
-  }
-  echo "Conectado!";
-?>
+mysqli_set_charset($conexao, 'utf8mb4');
