@@ -1,29 +1,25 @@
 <?php
-$erro = '';
+require 'conecta.php';
+
+$mensagem = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require 'conecta.php';
-
+    $nome = $_POST['nome'] ?? '';
     $email = $_POST['email'] ?? '';
     $senha = $_POST['senha'] ?? '';
 
-    $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
-    $resultado = mysqli_query($conexao, $sql);
-    $usuario = mysqli_fetch_assoc($resultado);
+    $sql = "INSERT INTO usuarios (nome, email, senha, tipo)
+            VALUES ('$nome', '$email', '$senha', 'usuario')";
 
-    if ($usuario) {
-        header('Location: site.php?id_usuario=' . $usuario['id'] . '&nome_usuario=' . $usuario['nome'] . '&tipo_usuario=' . $usuario['tipo']);
-        exit;
-    } else {
-        $erro = 'E-mail ou senha inválidos.';
-    }
+    mysqli_query($conexao, $sql);
+    $mensagem = 'Conta criada!';
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Criar conta</title>
     <style>
         body {
             margin: 0;
@@ -33,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         .caixa {
             width: 350px;
-            margin: 120px auto;
+            margin: 100px auto;
             padding: 30px;
             background: white;
             border-radius: 8px;
@@ -52,32 +48,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-weight: bold;
         }
 
-        .erro {
-            color: red;
+        .mensagem {
+            color: green;
+        }
+
+        a {
+            color: #146ef5;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="caixa">
         <h1>GuiBeStore</h1>
-        <h2>Login</h2>
+        <h2>Criar conta</h2>
 
-        <?php if ($erro != '') { ?>
-            <p class="erro"><?= $erro ?></p>
-        <?php } ?>
+        <p class="mensagem"><?= $mensagem ?></p>
 
         <form method="post">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome">
+
             <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email">
 
             <label for="senha">Senha</label>
-            <input type="text" id="senha" name="senha" required>
+            <input type="text" id="senha" name="senha">
 
-            <button type="submit">Entrar</button>
+            <button type="submit">Criar</button>
         </form>
 
         <p>
-            <a href="criarconta.php">Criar conta</a>
+            <a href="login.php">Voltar para o login</a>
         </p>
     </div>
 </body>

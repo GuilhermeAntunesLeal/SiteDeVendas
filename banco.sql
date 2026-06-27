@@ -27,5 +27,4 @@ CREATE TABLE IF NOT EXISTS compras (
 );
 
 INSERT IGNORE INTO usuarios (nome, email, senha, tipo) VALUES
-('Administrador GuiBe', 'adminGuiBe@gmail.com', '$2y$10$53i6xsGFinQdaKV2oILbQu3KUGb5T27EmlgreV9VM/0Kxblyl73zi', 'administrador'),
-('Usuário Comum', 'usuario@gmail.com', '$2y$10$53i6xsGFinQdaKV2oILbQu3KUGb5T27EmlgreV9VM/0Kxblyl73zi', 'usuario');
+('Administrador GuiBe', 'adminGuiBe@gmail.com', '123321', 'administrador');
