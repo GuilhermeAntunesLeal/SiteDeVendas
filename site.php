@@ -87,7 +87,7 @@ $resultado = mysqli_query($conexao, $sql);
             <a href="pagar.php?id_usuario=<?= $id_usuario ?>&nome_usuario=<?= $nome_usuario ?>&tipo_usuario=<?= $tipo_usuario ?>">Minhas compras</a>
 
             <?php if ($tipo_usuario == 'administrador') { ?>
-                <a href="formulario.html">Cadastrar produto</a>
+                <a href="formulario.php?id_usuario=<?= $id_usuario ?>&nome_usuario=<?= $nome_usuario ?>&tipo_usuario=<?= $tipo_usuario ?>">Cadastrar produto</a>
             <?php } ?>
 
             <a href="logout.php">Sair</a>
@@ -120,6 +120,13 @@ $resultado = mysqli_query($conexao, $sql);
                     <input type="hidden" id="id_produto" name="id_produto" value="<?= $produto['id'] ?>">
                     <button type="submit">Comprar</button>
                 </form>
+
+                <?php if ($tipo_usuario == 'administrador') { ?>
+                    <p>
+                        <a class="botao" href="formulario.php?id_produto=<?= $produto['id'] ?>&id_usuario=<?= $id_usuario ?>&nome_usuario=<?= $nome_usuario ?>&tipo_usuario=<?= $tipo_usuario ?>">Editar</a>
+                        <a class="botao" href="excluir.php?id_produto=<?= $produto['id'] ?>&id_usuario=<?= $id_usuario ?>&nome_usuario=<?= $nome_usuario ?>&tipo_usuario=<?= $tipo_usuario ?>">Excluir</a>
+                    </p>
+                <?php } ?>
             </div>
         <?php } ?>
     </div>

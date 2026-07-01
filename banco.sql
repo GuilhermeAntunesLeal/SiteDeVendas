@@ -28,3 +28,9 @@ CREATE TABLE IF NOT EXISTS compras (
 
 INSERT IGNORE INTO usuarios (nome, email, senha, tipo) VALUES
 ('Administrador GuiBe', 'adminGuiBe@gmail.com', '123321', 'administrador');
+
+INSERT IGNORE INTO produtos (id, nome, descricao, preco, imagem) VALUES
+(1, 'Caneca do Batman.', 'A melhor caneca de todos os tempos.', 149.90, 'Uploads/CanecaDoBatman.jpg'),
+(2, 'Relógio Brabo', 'Muito Brabo', 199.90, 'Uploads/RelogioBrabo.jpg'),
+(3, 'Chinelo do Bob Esponja', 'O caminhar mais estiloso Via Lactea', 179.90, 'Uploads/ChineloDoBob.webp'),
+(4, 'Xadrez', 'O xadrez mais competitivo do mercado.', 200.00, 'Uploads/Xadrez Diferenciado.jpg');
